@@ -2,4 +2,5 @@
     <string name="app_name">Book-slide</string>
     <string name="saludo_inicial">Saludo_inicial</string>
     <string name="hora_del_saludo">Hora del saludo</string>
+    <string name="inicio">Inicio</string>
 </resources>

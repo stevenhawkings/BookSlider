@@ -1,5 +1,6 @@
 package com.example.book_slide
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -8,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import java.util.Calendar
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // esto es algo para comenzar.
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val tvSaludo = findViewById<TextView>(R.id.tvSaludo)
@@ -20,6 +23,14 @@ class MainActivity : AppCompatActivity() {
                 else -> "¡Buenas noches!, Listo para leer?"
             }
             tvSaludo.text = saludo
+        }
+
+        // creacion de una nueva pantalla
+
+        val btnInicio: Button = findViewById(R.id.btnPantallaInicio)
+        btnInicio.setOnClickListener {
+            val intent: Intent = Intent(this, Pantalla2:: class.java)
+            startActivity(intent)
         }
     }
 }
