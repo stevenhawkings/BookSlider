@@ -7,4 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Pantalla2">
 
+    <!-- Boton para ingresar al archivo pdf -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
