@@ -24,6 +24,6 @@
         android:id="@+id/btnPantallaInicio"
         android:layout_width="141dp"
         android:layout_height="44dp"
-        android:text="inicio" />
+        android:text="@string/inicio" />
 
 </LinearLayout>

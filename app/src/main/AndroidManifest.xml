@@ -26,11 +26,11 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".Pantalla2"
+            android:name=".FragmentMenuBook"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".Pantalla3"
+            android:name=".FragmentBook"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

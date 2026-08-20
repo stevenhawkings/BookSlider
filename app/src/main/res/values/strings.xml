@@ -3,4 +3,8 @@
     <string name="saludo_inicial">Saludo_inicial</string>
     <string name="hora_del_saludo">Hora del saludo</string>
     <string name="inicio">Inicio</string>
+    <string name="menu_pantalla2">Menu pantalla2</string>
+    <string name="home_menu_nav">home</string>
+    <string name="settings_menu_nav">settings</string>
+    <string name="add_book_menu_nav">add</string>
 </resources>

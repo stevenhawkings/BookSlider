@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import java.util.Calendar
 class MainActivity : AppCompatActivity() {
@@ -25,11 +24,11 @@ class MainActivity : AppCompatActivity() {
             tvSaludo.text = saludo
         }
 
-        // creacion de una nueva pantalla
+        // Direccion a pantalla Home
 
         val btnInicio: Button = findViewById(R.id.btnPantallaInicio)
         btnInicio.setOnClickListener {
-            val intent: Intent = Intent(this, Pantalla2:: class.java)
+            val intent: Intent = Intent(this, FragmentMenuBook:: class.java)
             startActivity(intent)
         }
     }
