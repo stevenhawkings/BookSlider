@@ -1,11 +1,13 @@
-package com.example.book_slide
+package com.example.book_slide.actvities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.book_slide.R
 import java.util.Calendar
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -28,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         val btnInicio: Button = findViewById(R.id.btnPantallaInicio)
         btnInicio.setOnClickListener {
-            val intent: Intent = Intent(this, FragmentMenuBook:: class.java)
+            val intent: Intent = Intent(this, MenuListaLibros::class.java)
             startActivity(intent)
         }
     }

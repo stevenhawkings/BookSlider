@@ -6,7 +6,15 @@
         <option name="selectionMode" value="DROPDOWN" />
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="Pantalla2">
+      <SelectionState runConfigName="Menu_lista_libros">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
+      </SelectionState>
+      <SelectionState runConfigName="Menu_lista_libros (1)">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DialogSelection />
+      </SelectionState>
+      <SelectionState runConfigName="MenuListaLibros">
         <option name="selectionMode" value="DROPDOWN" />
         <DialogSelection />
       </SelectionState>

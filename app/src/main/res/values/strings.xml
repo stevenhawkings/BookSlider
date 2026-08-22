@@ -7,4 +7,12 @@
     <string name="home_menu_nav">home</string>
     <string name="settings_menu_nav">settings</string>
     <string name="add_book_menu_nav">add</string>
+    <string name="inicio_superior">Inicio</string>
+    <string name="inicio2_superior">Inicio</string>
+    <string name="usuarios_superior">Usuarios</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_fragment">Add fragment</string>
+    <string name="settings_fragment">Settings_fragment\n</string>
+    <string name="menu_de_libros">Menu de libros</string>
 </resources>
