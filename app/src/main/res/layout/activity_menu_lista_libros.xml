@@ -6,13 +6,26 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".actvities.MenuListaLibros">
+    tools:context=".actvities.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_menu"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/border_grey"
+        app:title="Book-Slide"
+        app:titleTextColor="@color/accent_cyan"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_menu"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -21,9 +34,23 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+
+        android:background="@color/border_grey"
+        app:itemActiveIndicatorStyle="@style/BottomNavigationActiveIndicator"
+
+        app:itemBackground="@drawable/bottom_navigation_indicator"
+        app:itemIconTint="@color/accent_cyan"
+
+        app:itemRippleColor="@android:color/transparent"
+        app:itemTextColor="@color/accent_cyan"
+
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_buttom_nav" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

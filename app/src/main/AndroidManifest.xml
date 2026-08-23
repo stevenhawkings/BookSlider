@@ -21,11 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".actvities.MenuListaLibros"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

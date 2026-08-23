@@ -1,37 +1,69 @@
 package com.example.book_slide.actvities
-
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.book_slide.R
-import java.util.Calendar
+import com.example.book_slide.databinding.ActivityMenuListaLibrosBinding
+import com.example.book_slide.fragment.HomeFragment
+import com.example.book_slide.fragment.LogInFragment
+import com.example.book_slide.fragment.SettingsFragment
+import com.example.book_slide.fragment.addFragment
 
 class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    lateinit var binding: ActivityMenuListaLibrosBinding
 
-        // esto es algo para comenzar.
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val tvSaludo = findViewById<TextView>(R.id.tvSaludo)
-        val btnActualizar = findViewById<Button>(R.id.btnActualizar)
-        btnActualizar.setOnClickListener {
-            val hora = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-            val saludo = when (hora) {
-                in 0..11 -> "¡Buenos días!, Listo para leer"
-                in 12..18 -> "¡Buenas tardes!, Listo para leer?"
-                else -> "¡Buenas noches!, Listo para leer?"
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_menu_lista_libros)
+
+         // hacer que cada vez que se presione un item se diriga a un fragmento
+         binding = ActivityMenuListaLibrosBinding.inflate(layoutInflater)
+         setContentView(binding.root)
+         setSupportActionBar(binding.toolbarMenu)
+        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, HomeFragment()).commit()
+         binding.bottomNavigation.setOnItemSelectedListener {
+             when (it.itemId){
+                 R.id.add_circle_menu -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                     addFragment()).commit()
+                 R.id.settings -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                     SettingsFragment()).commit()
+                 R.id.home -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                     HomeFragment()).commit()
+             }
+             true
+         }
+     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+
+            R.id.iniciar_sesion -> {
+                Toast.makeText(this, "Iniciar sesion pronto", Toast.LENGTH_LONG).show()
+                /*supportFragmentManager.beginTransaction().replace(
+                    R.id.fragmentContainer,
+                    LogInFragment()
+                ).commit() */
+                true
             }
-            tvSaludo.text = saludo
-        }
+            R.id.settings-> {
+                Toast.makeText(this, "Configuracion pronto", Toast.LENGTH_LONG).show()
+                // Agregar fragmento de configuracion
+                true
+            }
 
-        // Direccion a pantalla Home
-
-        val btnInicio: Button = findViewById(R.id.btnPantallaInicio)
-        btnInicio.setOnClickListener {
-            val intent: Intent = Intent(this, MenuListaLibros::class.java)
-            startActivity(intent)
+            R.id.perfil -> {
+                Toast.makeText(this, "Perfil pronto", Toast.LENGTH_LONG).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
