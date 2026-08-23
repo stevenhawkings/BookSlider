@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import com.example.book_slide.R
-import com.example.book_slide.cardBook.minimalCard
+import com.example.book_slide.cardBook.MinimalCard
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,11 +41,11 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_home2, container, false)
-        return ComposeView(requireContext()).apply {
-            setContent {
-                minimalCard()
-            }
-        }
+        return inflater.inflate(
+            R.layout.fragment_home,
+            container,
+            false
+        )
     }
 
     companion object {

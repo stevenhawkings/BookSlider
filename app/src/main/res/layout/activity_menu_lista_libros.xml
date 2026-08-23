@@ -6,7 +6,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".actvities.MainActivity">
+    tools:context=".actvities.MainActivity"
+    android:background="@color/bg_main">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_menu"

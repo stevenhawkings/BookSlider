@@ -19,4 +19,5 @@
     <string name="ver_mi_perfil">Ver mi perfil</string>
     <string name="buscar_archivos">Buscar archivos</string>
     <string name="configuracion">Configuracion</string>
+    <string name="add">+</string>
 </resources>
