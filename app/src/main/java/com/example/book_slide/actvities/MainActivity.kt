@@ -48,10 +48,10 @@ class MainActivity : AppCompatActivity() {
 
             R.id.iniciar_sesion -> {
                 Toast.makeText(this, "Iniciar sesion pronto", Toast.LENGTH_LONG).show()
-                /*supportFragmentManager.beginTransaction().replace(
+                supportFragmentManager.beginTransaction().replace(
                     R.id.fragmentContainer,
                     LogInFragment()
-                ).commit() */
+                ).commit()
                 true
             }
             R.id.settings-> {
