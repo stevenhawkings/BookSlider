@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/busqueda"
+        android:title="@string/buscar_archivos"
+        android:icon="@drawable/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/iniciar_sesion"
+        android:title="@string/inicar_sesion"
+        android:icon="@drawable/outline_boy_24"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/perfil"
+        android:title="@string/ver_mi_perfil"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/configuracion"
+        app:showAsAction="never" />
+
+</menu>

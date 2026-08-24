@@ -3,4 +3,21 @@
     <string name="saludo_inicial">Saludo_inicial</string>
     <string name="hora_del_saludo">Hora del saludo</string>
     <string name="inicio">Inicio</string>
+    <string name="menu_pantalla2">Menu pantalla2</string>
+    <string name="home_menu_nav">home</string>
+    <string name="settings_menu_nav">settings</string>
+    <string name="add_book_menu_nav">add</string>
+    <string name="inicio_superior">Inicio</string>
+    <string name="inicio2_superior">Inicio</string>
+    <string name="usuarios_superior">Usuarios</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_fragment">Add fragment</string>
+    <string name="settings_fragment">Settings_fragment\n</string>
+    <string name="menu_de_libros">Menu de libros</string>
+    <string name="inicar_sesion">Inicar Sesion</string>
+    <string name="ver_mi_perfil">Ver mi perfil</string>
+    <string name="buscar_archivos">Buscar archivos</string>
+    <string name="configuracion">Configuracion</string>
+    <string name="add">+</string>
 </resources>

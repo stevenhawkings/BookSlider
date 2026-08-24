@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <!-- Base y Acentos -->
+    <color name="bg_main">#FF000000</color>
+    <color name="accent_cyan">#FF00F5D4</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="blue_dark">#202240</color>
-    <color name="Red">#F54927</color>
+    <color name="text_secondary">#FF8A99AD</color>
+    <color name="border_grey">#FF30363D</color>
+
+    <!-- Tarjeta Programación -->
+    <color name="card_programacion_bg">#FF1D3B5A</color>
+    <color name="card_programacion_border">#FF2B5B88</color>
+
+    <!-- Tarjeta Diseño UX -->
+    <color name="card_diseno_ux_bg">#FF1A3D3C</color>
+    <color name="card_diseno_ux_border">#FF275B59</color>
+
+    <!-- Tarjeta Ciencia Ficción -->
+    <color name="card_ciencia_ficcion_bg">#FF2A1B3D</color>
+    <color name="card_ciencia_ficcion_border">#FF432B60</color>
+
+    <!-- Tarjeta Nueva Carpeta -->
+    <color name="card_new_folder_bg">#FF161B22</color>
+
+    <color name="Azul_transparente">#3300BCD4</color>>
 </resources>

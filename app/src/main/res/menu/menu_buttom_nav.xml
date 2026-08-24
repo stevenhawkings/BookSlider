@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        android:id="@"
-    </item>
+    <item android:title="@string/add_book_menu_nav"
+          android:id="@+id/add_circle_menu"
+          android:icon="@drawable/outline_add_circle_24" />
+
+    <item
+        android:title="@string/home_menu_nav"
+        android:id="@+id/home"
+        android:icon="@drawable/outline_add_home_24" />
+
+    <item
+        android:title="@string/settings_menu_nav"
+        android:id="@+id/settings"
+        android:icon="@drawable/outline_adjust_24" />
 </menu>
