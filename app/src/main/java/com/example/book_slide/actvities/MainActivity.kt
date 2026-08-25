@@ -11,7 +11,6 @@ import com.example.book_slide.fragment.HomeFragment
 import com.example.book_slide.fragment.LogInFragment
 import com.example.book_slide.fragment.SettingsFragment
 import com.example.book_slide.fragment.addFragment
-import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMenuListaLibrosBinding
