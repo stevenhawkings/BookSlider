@@ -26,8 +26,8 @@ class LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.button.setOnClickListener {
-            val email = binding.editTextText.text.toString()
-            val password = binding.editTextTextPassword.text.toString()
+            val email = binding.editTextText.text?.toString()?.trim()
+            val password = binding.editTextTextPassword.text?.toString()
 
             val sharedPref = requireActivity().getSharedPreferences("UserPrefs", android.content.Context.MODE_PRIVATE)
             val storedPassword = sharedPref.getString(email, null)
