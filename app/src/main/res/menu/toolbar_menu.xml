@@ -2,12 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:id="@+id/busqueda"
-        android:title="@string/buscar_archivos"
-        android:icon="@drawable/search"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="ifRoom|collapseActionView" />
 
     <item
         android:id="@+id/iniciar_sesion"

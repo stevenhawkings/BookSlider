@@ -42,11 +42,13 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+
     }
 }
 
 dependencies {
-    implementation("androidx.cardview:cardview:1.0.0")
+    val roomVersion = "2.6.1"
+
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.fragment)
@@ -61,10 +63,14 @@ dependencies {
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.navigation.compose)
 
+    // Base de datos
+    implementation("androidx.room:room-runtime:${roomVersion}")
+    implementation("androidx.room:room-ktx:${roomVersion}")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
+
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
