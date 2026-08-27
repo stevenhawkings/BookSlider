@@ -42,10 +42,13 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+
     }
 }
 
 dependencies {
+    val roomVersion = "2.6.1"
+
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.fragment)
@@ -59,6 +62,10 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.navigation.compose)
+
+    // Base de datos
+    implementation("androidx.room:room-runtime:${roomVersion}")
+    implementation("androidx.room:room-ktx:${roomVersion}")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
