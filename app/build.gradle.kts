@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.ksp)
+
 }
 
 android {
@@ -66,6 +68,10 @@ dependencies {
     // Base de datos
     implementation("androidx.room:room-runtime:${roomVersion}")
     implementation("androidx.room:room-ktx:${roomVersion}")
+    implementation("androidx.sqlite:sqlite-framework:2.7.0")
+    ksp("androidx.room:room-compiler:${roomVersion}")
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

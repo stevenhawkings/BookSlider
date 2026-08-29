@@ -7,6 +7,26 @@
     android:background="@color/bg_main"
     tools:context=".fragment.RegisterFragment">
 
+    <EditText
+        android:id="@+id/etRegisterUsername"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/edit_text"
+        android:ems="10"
+        android:hint="Usuario"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColor="@color/accent_cyan"
+        android:textColorHint="@color/text_secondary"
+        app:layout_constraintBottom_toTopOf="@+id/etRegisterEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/registerTitle" />
+
     <ImageView
         android:id="@+id/registerLogo"
         android:layout_width="120dp"
@@ -36,7 +56,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/edit_text"
         android:ems="10"
@@ -46,6 +66,7 @@
         android:textColor="@color/accent_cyan"
         android:textColorHint="@color/text_secondary"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerTitle" />
 
@@ -54,7 +75,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/edit_text"
         android:ems="10"

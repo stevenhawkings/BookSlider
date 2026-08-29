@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
+import androidx.fragment.app.findFragment
 import com.example.book_slide.R
-import com.example.book_slide.cardBook.MinimalCard
+import com.example.book_slide.ui.DocumentationSearchBar
+import com.google.android.material.search.SearchBar
+import kotlin.contracts.Returns
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,6 +36,18 @@ class HomeFragment : Fragment() {
         }
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Llamar barra de busqueda
+        val searchCompose = view.findViewById<ComposeView>(R.id.searchCompose)
+
+        searchCompose.setContent {
+            DocumentationSearchBar()
+        }
+
+    }
     // Se agrega la vista de las tarjetas.
 
     override fun onCreateView(
