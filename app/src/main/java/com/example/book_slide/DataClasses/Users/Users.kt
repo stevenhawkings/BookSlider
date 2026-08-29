@@ -13,10 +13,10 @@ data class Users (
     @ColumnInfo(name = "Nombre")
     var name: String? = null,
 
-    @ColumnInfo(name = "Email")
+    @ColumnInfo(name = "email")
     var email: String? = null,
 
-    @ColumnInfo(name = "Contraseña")
+    @ColumnInfo(name = "password")
     var password: String? = null,
 
 )

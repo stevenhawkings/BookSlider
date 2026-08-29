@@ -10,6 +10,12 @@ import android.widget.EditText
 import android.widget.Toast
 import com.example.book_slide.R
 import com.example.book_slide.databinding.FragmentLogInBinding
+import com.example.book_slide.fragment.RegisterFragment
+import androidx.fragment.app.viewModels
+import com.example.book_slide.DataClasses.Users.UsersDatabase
+import com.example.book_slide.DataClasses.Users.UsersRepository
+import com.example.book_slide.DataClasses.Users.UsersViewModel
+import com.example.book_slide.DataClasses.Users.UsersViewModelFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,6 +31,17 @@ class LogInFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private val database by lazy {
+        UsersDatabase().getUserDb(requireContext())
+    }
+
+    private val repository by lazy {
+        UsersRepository(database.UsersDao())
+    }
+
+    private val viewModel: UsersViewModel by viewModels {
+        UsersViewModelFactory(repository)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,11 +74,39 @@ class LogInFragment : Fragment() {
 
             // Logica basica de login.
 
-            if (email == "admin" && password == "1234") {
-                Toast.makeText(requireContext(), "Sesion iniciada", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(requireContext(), "Sesion iniciada", Toast.LENGTH_SHORT).show()
+            if (email.isEmpty () || password.isEmpty()) {
+                Toast.makeText(requireContext(), "Completa todo los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            viewModel.login(email, password) { success ->
+
+                if (success) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Sesión iniciada",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    // Aquí puedes ir al siguiente Fragment
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error: comprueba el usuario y contraseña",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+
+        binding.button2.setOnClickListener {
+            parentFragmentManager.beginTransaction()
+                .replace(
+                    R.id.fragmentContainer,
+                    RegisterFragment()
+                )
+                .addToBackStack(null)
+                .commit()
         }
     }
 

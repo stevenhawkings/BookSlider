@@ -60,7 +60,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.perfil -> {
-                Toast.makeText(this, "Perfil pronto", Toast.LENGTH_LONG).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)

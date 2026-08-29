@@ -2,9 +2,12 @@ package com.example.book_slide.DataClasses.Books
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Database
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.RoomDatabase
 import androidx.room.Update
+
 
 @Dao
 interface BooksDao {
