@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.compose.ui.platform.ComposeView
-import androidx.fragment.app.findFragment
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.book_slide.Book.LibrosViewModel
 import com.example.book_slide.R
+import com.example.book_slide.adapter.LibroAdapter
 import com.example.book_slide.ui.DocumentationSearchBar
-import com.google.android.material.search.SearchBar
-import kotlin.contracts.Returns
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,6 +29,11 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    // Se comparte con addFragment: lo que se agrega ahí aparece aquí.
+    private val librosViewModel: LibrosViewModel by activityViewModels()
+    private lateinit var adapter: LibroAdapter
+    private lateinit var tvVacio: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,15 +55,27 @@ class HomeFragment : Fragment() {
             DocumentationSearchBar()
         }
 
+        // Se agrega la vista de las tarjetas.
+        tvVacio = view.findViewById(R.id.tvVacio)
+        val rvLibros = view.findViewById<RecyclerView>(R.id.rvLibros)
+
+        adapter = LibroAdapter(mutableListOf()) { position ->
+            librosViewModel.eliminar(position)
+        }
+        rvLibros.layoutManager = LinearLayoutManager(requireContext())
+        rvLibros.adapter = adapter
+
+        librosViewModel.libros.observe(viewLifecycleOwner) { lista ->
+            adapter.actualizarLista(lista)
+            tvVacio.visibility = if (lista.isEmpty()) View.VISIBLE else View.GONE
+        }
     }
-    // Se agrega la vista de las tarjetas.
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_home2, container, false)
         return inflater.inflate(
             R.layout.fragment_home2,
             container,
@@ -83,3 +103,4 @@ class HomeFragment : Fragment() {
             }
     }
 }
+

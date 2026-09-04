@@ -1,25 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_main"
     tools:context=".fragment.HomeFragment">
 
-    <!-- Implementar busqueda -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <!-- Barra de búsqueda -->
+    <androidx.compose.ui.platform.ComposeView
+        android:id="@+id/searchCompose"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <androidx.compose.ui.platform.ComposeView
-            android:id="@+id/searchCompose"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    <!-- Mensaje cuando no hay archivos agregados -->
+    <TextView
+        android:id="@+id/tvVacio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No hay archivos agregados todavía"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="@id/rvLibros"
+        app:layout_constraintBottom_toBottomOf="@id/rvLibros"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
-    <!-- Hacer tarjetas -->
+    <!-- Tarjetas de libros/archivos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvLibros"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/searchCompose"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/item_libro" />
 
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
