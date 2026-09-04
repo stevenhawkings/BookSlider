@@ -71,8 +71,6 @@ dependencies {
     implementation("androidx.sqlite:sqlite-framework:2.7.0")
     ksp("androidx.room:room-compiler:${roomVersion}")
 
-
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -80,4 +78,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    // Binding
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
 }
