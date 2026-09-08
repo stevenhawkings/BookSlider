@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
-
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -56,13 +56,15 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.foundation)
+    implementation(libs.androidx.material.icons.extended)
+    implementation("androidx.compose.foundation:foundation")
     implementation(libs.androidx.navigation.compose)
 
     // Base de datos
@@ -81,4 +83,8 @@ dependencies {
 
     // Binding
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 }

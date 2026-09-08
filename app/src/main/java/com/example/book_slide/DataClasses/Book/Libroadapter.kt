@@ -1,4 +1,4 @@
-package com.example.book_slide.adapter
+package com.example.book_slide.DataClasses.Book
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.book_slide.Book.Libro
 import com.example.book_slide.R
 
 class LibroAdapter(
@@ -39,14 +38,21 @@ class LibroAdapter(
         holder.tvNombre.text = libro.nombre
         holder.tvTipo.text = libro.tipo
 
-        val icono = when (libro.tipo) {
-            "PDF" -> android.R.drawable.ic_menu_agenda
-            "WORD" -> android.R.drawable.ic_menu_edit
-            "EPUB" -> android.R.drawable.ic_menu_slideshow
-            "TXT" -> android.R.drawable.ic_menu_view
-            else -> android.R.drawable.ic_menu_help
+        if (libro.portadaUri != null) {
+            // Hay foto de portada: se muestra en lugar del ícono genérico.
+            holder.ivIcono.scaleType = ImageView.ScaleType.CENTER_CROP
+            holder.ivIcono.setImageURI(libro.portadaUri)
+        } else {
+            holder.ivIcono.scaleType = ImageView.ScaleType.CENTER_INSIDE
+            val icono = when (libro.tipo) {
+                "PDF" -> android.R.drawable.ic_menu_agenda
+                "WORD" -> android.R.drawable.ic_menu_edit
+                "EPUB" -> android.R.drawable.ic_menu_slideshow
+                "TXT" -> android.R.drawable.ic_menu_view
+                else -> android.R.drawable.ic_menu_help
+            }
+            holder.ivIcono.setImageResource(icono)
         }
-        holder.ivIcono.setImageResource(icono)
 
         holder.btnEliminar.setOnClickListener {
             val pos = holder.bindingAdapterPosition
