@@ -20,4 +20,5 @@
     <string name="buscar_archivos">Buscar archivos</string>
     <string name="configuracion">Configuracion</string>
     <string name="add">+</string>
+    <string name="nuevo_pdf">Nuevo archivo</string>
 </resources>

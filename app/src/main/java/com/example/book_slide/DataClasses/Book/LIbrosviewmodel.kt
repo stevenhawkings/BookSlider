@@ -1,4 +1,4 @@
-package com.example.book_slide.Book
+package com.example.book_slide.DataClasses.Book
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

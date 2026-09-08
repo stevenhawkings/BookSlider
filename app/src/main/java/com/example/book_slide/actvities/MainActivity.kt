@@ -4,14 +4,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.example.book_slide.R
 import com.example.book_slide.databinding.ActivityMenuListaLibrosBinding
 import com.example.book_slide.fragment.HomeFragment
 import com.example.book_slide.fragment.LogInFragment
 import com.example.book_slide.fragment.SettingsFragment
 import com.example.book_slide.fragment.addFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMenuListaLibrosBinding
 
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, HomeFragment()).commit()
          binding.bottomNavigation.setOnItemSelectedListener {
              when (it.itemId){
-                 R.id.add_circle_menu -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
-                     addFragment()).commit()
+                 //R.id.add_circle_menu -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
+                     //addFragment()).commit()
                  R.id.settings -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
                      SettingsFragment()).commit()
                  R.id.home -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
