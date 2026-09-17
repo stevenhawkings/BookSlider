@@ -21,4 +21,7 @@
     <string name="configuracion">Configuracion</string>
     <string name="add">+</string>
     <string name="nuevo_pdf">Nuevo archivo</string>
+
+    <!-- ID de Cliente Web de Firebase para Google Sign-In -->
+    <string name="default_web_client_id">846250977181-78snb8np7pq791pqot0jobbb4dk8nj1v.apps.googleusercontent.com</string>
 </resources>
