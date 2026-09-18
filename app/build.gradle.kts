@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -38,20 +40,21 @@ android {
 
     kotlin {
         compilerOptions {
-            jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+            jvmTarget = JvmTarget.JVM_17
         }
     }
 
     buildFeatures {
         compose = true
         viewBinding = true
-
     }
 }
 
-dependencies {
-    val roomVersion = "2.6.1"
+ksp {
+    arg("room.generateKotlin", "true")
+}
 
+dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.fragment)
@@ -65,14 +68,13 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.extended)
-    implementation("androidx.compose.foundation:foundation")
+    implementation(libs.androidx.foundation)
     implementation(libs.androidx.navigation.compose)
 
     // Base de datos
-    implementation("androidx.room:room-runtime:${roomVersion}")
-    implementation("androidx.room:room-ktx:${roomVersion}")
-    implementation("androidx.sqlite:sqlite-framework:2.7.0")
-    ksp("androidx.room:room-compiler:${roomVersion}")
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -102,6 +104,4 @@ dependencies {
     // Coroutines & Lifecycle Extra
     implementation(libs.kotlinx.coroutines.play.services)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-
-
 }
