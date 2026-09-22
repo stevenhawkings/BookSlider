@@ -2,7 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
     <item
         android:id="@+id/iniciar_sesion"
         android:title="@string/inicar_sesion"
@@ -12,11 +11,6 @@
     <item
         android:id="@+id/perfil"
         android:title="@string/ver_mi_perfil"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/settings"
-        android:title="@string/configuracion"
         app:showAsAction="never" />
 
 </menu>

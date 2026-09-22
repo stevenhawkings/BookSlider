@@ -1,25 +1,32 @@
 package com.example.book_slide.fragment
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.book_slide.DataClasses.Book.Libro
 import com.example.book_slide.DataClasses.Book.LibrosViewModel
 import com.example.book_slide.R
+import com.example.book_slide.util.ColorBlindnessManager
+import com.example.book_slide.util.ColorBlindnessMode
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.launch
 
 class addFragment : Fragment() {
 
-    // Mismo ViewModel que usa HomeFragment: al guardar aquí, aparece allá.
     private val librosViewModel: LibrosViewModel by activityViewModels()
 
     private var uriSeleccionado: Uri? = null
@@ -30,12 +37,14 @@ class addFragment : Fragment() {
     private lateinit var etNombre: TextInputEditText
     private lateinit var ivPortada: ImageView
     private lateinit var btnGuardar: MaterialButton
+    private lateinit var tvTituloAdd: TextView
+    private lateinit var btnSeleccionar: MaterialButton
+    private lateinit var btnSeleccionarPortada: MaterialButton
 
-    // Tipos de archivo permitidos. Agrega más MIME types aquí si quieres aceptar otros formatos.
     private val mimeTypesPermitidos = arrayOf(
         "application/pdf",
         "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document", // .docx
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
         "application/epub+zip",
         "text/plain"
     )
@@ -62,11 +71,20 @@ class addFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        tvTituloAdd = view.findViewById(R.id.tvTituloAdd)
         etNombre = view.findViewById(R.id.etNombre)
         ivPortada = view.findViewById(R.id.ivPortada)
         btnGuardar = view.findViewById(R.id.btnGuardar)
-        val btnSeleccionar = view.findViewById<MaterialButton>(R.id.btnSeleccionar)
-        val btnSeleccionarPortada = view.findViewById<MaterialButton>(R.id.btnSeleccionarPortada)
+        btnSeleccionar = view.findViewById(R.id.btnSeleccionar)
+        btnSeleccionarPortada = view.findViewById(R.id.btnSeleccionarPortada)
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                ColorBlindnessManager.currentMode.collect { mode ->
+                    applyColorBlindnessMode(mode)
+                }
+            }
+        }
 
         btnSeleccionar.setOnClickListener {
             selectorArchivo.launch(mimeTypesPermitidos)
@@ -81,8 +99,16 @@ class addFragment : Fragment() {
         }
     }
 
+    private fun applyColorBlindnessMode(mode: ColorBlindnessMode) {
+        val colorStateList = ColorStateList.valueOf(mode.primaryColorHex)
+        tvTituloAdd.setTextColor(mode.primaryColorHex)
+        btnSeleccionar.backgroundTintList = colorStateList
+        btnSeleccionar.setTextColor(0xFF000000.toInt())
+        btnSeleccionarPortada.setTextColor(mode.primaryColorHex)
+        btnSeleccionarPortada.strokeColor = colorStateList
+    }
+
     private fun procesarArchivoSeleccionado(uri: Uri) {
-        // Permiso persistente para poder volver a abrir el archivo después
         requireContext().contentResolver.takePersistableUriPermission(
             uri,
             Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -101,9 +127,10 @@ class addFragment : Fragment() {
         nombreDetectado = nombre
         tipoSeleccionado = tipo
 
-        // Precarga el nombre detectado en el campo editable; el usuario puede cambiarlo antes de guardar.
         etNombre.setText(nombre)
         btnGuardar.isEnabled = true
+        btnGuardar.backgroundTintList = ColorStateList.valueOf(ColorBlindnessManager.getMode(requireContext()).primaryColorHex)
+        btnGuardar.setTextColor(0xFF000000.toInt())
     }
 
     private fun procesarPortadaSeleccionada(uri: Uri) {
@@ -130,13 +157,11 @@ class addFragment : Fragment() {
     private fun guardarLibro() {
         val uri = uriSeleccionado ?: return
         val tipo = tipoSeleccionado ?: "OTRO"
-        // Usa el nombre que el usuario haya dejado en el campo (editado o no).
         val nombreFinal = etNombre.text?.toString()?.trim()
             .let { if (it.isNullOrBlank()) (nombreDetectado ?: "Archivo sin nombre") else it }
 
         librosViewModel.agregar(Libro(uri, nombreFinal, tipo, portadaSeleccionada))
 
-        // Limpiar selección
         uriSeleccionado = null
         nombreDetectado = null
         tipoSeleccionado = null
@@ -145,7 +170,6 @@ class addFragment : Fragment() {
         ivPortada.setImageResource(android.R.drawable.ic_menu_report_image)
         btnGuardar.isEnabled = false
 
-        // Volver al Home para ver el archivo recién agregado
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, HomeFragment())
             .commit()

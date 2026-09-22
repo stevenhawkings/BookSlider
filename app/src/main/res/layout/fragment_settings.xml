@@ -1,17 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bg_main"
+    android:padding="20dp"
     tools:context=".fragment.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_fragment"
-        android:textColor="@color/white"
-        android:layout_gravity="center"/>
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tvSettingsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_fragment"
+            android:textColor="@color/accent_cyan"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvSettingsSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/subtitulo_daltonismo"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:layout_marginBottom="24dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgDaltonism"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Normal -->
+            <RadioButton
+                android:id="@+id/rbNormal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/daltonismo_normal"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingStart="8dp"
+                android:buttonTint="@color/accent_cyan"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/daltonismo_normal_desc"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Protanopia -->
+            <RadioButton
+                android:id="@+id/rbProtanopia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/daltonismo_protanopia"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingStart="8dp"
+                android:buttonTint="@color/accent_cyan"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/daltonismo_protanopia_desc"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Deuteranopia -->
+            <RadioButton
+                android:id="@+id/rbDeuteranopia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/daltonismo_deuteranopia"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingStart="8dp"
+                android:buttonTint="@color/accent_cyan"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/daltonismo_deuteranopia_desc"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Tritanopia -->
+            <RadioButton
+                android:id="@+id/rbTritanopia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/daltonismo_tritanopia"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingStart="8dp"
+                android:buttonTint="@color/accent_cyan"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/daltonismo_tritanopia_desc"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:layout_marginStart="32dp"
+                android:layout_marginBottom="16dp"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+</ScrollView>

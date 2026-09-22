@@ -1,26 +1,41 @@
 <resources>
     <string name="app_name">Book-slide</string>
-    <string name="saludo_inicial">Saludo_inicial</string>
+    <string name="saludo_inicial">Saludo inicial</string>
     <string name="hora_del_saludo">Hora del saludo</string>
     <string name="inicio">Inicio</string>
-    <string name="menu_pantalla2">Menu pantalla2</string>
-    <string name="home_menu_nav">home</string>
-    <string name="settings_menu_nav">settings</string>
-    <string name="add_book_menu_nav">add</string>
+    <string name="menu_pantalla2">Menú pantalla 2</string>
+    <string name="home_menu_nav">Inicio</string>
+    <string name="settings_menu_nav">Ajustes</string>
+    <string name="add_book_menu_nav">Agregar</string>
     <string name="inicio_superior">Inicio</string>
     <string name="inicio2_superior">Inicio</string>
     <string name="usuarios_superior">Usuarios</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="add_fragment">Add fragment</string>
-    <string name="settings_fragment">Settings_fragment\n</string>
-    <string name="menu_de_libros">Menu de libros</string>
-    <string name="inicar_sesion">Inicar Sesion</string>
+    <string name="add_fragment">Agregar libro</string>
+    <string name="settings_fragment">Ajustes y Accesibilidad</string>
+    <string name="menu_de_libros">Menú de libros</string>
+    <string name="inicar_sesion">Iniciar Sesión</string>
     <string name="ver_mi_perfil">Ver mi perfil</string>
     <string name="buscar_archivos">Buscar archivos</string>
-    <string name="configuracion">Configuracion</string>
+    <string name="configuracion">Configuración</string>
     <string name="add">+</string>
     <string name="nuevo_pdf">Nuevo archivo</string>
+    <string name="hint_email">Correo electrónico</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="separador_iniciar_sesion">------ Iniciar Sesión -----</string>
+    <string name="separador_registro">------ ¿Aún no tienes cuenta? -----</string>
+    <string name="btn_registro">Registro</string>
+
+    <!-- Cadenas para Modos de Daltonismo -->
+    <string name="titulo_daltonismo">Modos de Daltonismo</string>
+    <string name="subtitulo_daltonismo">Selecciona una paleta adaptada para mejorar la visibilidad y accesibilidad en toda la interfaz:</string>
+    <string name="daltonismo_normal">Normal (Sin filtro)</string>
+    <string name="daltonismo_normal_desc">Paleta predeterminada con tono cian principal.</string>
+    <string name="daltonismo_protanopia">Protanopía</string>
+    <string name="daltonismo_protanopia_desc">Paleta adaptada para dificultad en la percepción del color rojo.</string>
+    <string name="daltonismo_deuteranopia">Deuteranopía</string>
+    <string name="daltonismo_deuteranopia_desc">Paleta adaptada para dificultad en la percepción del color verde.</string>
+    <string name="daltonismo_tritanopia">Tritanopía</string>
+    <string name="daltonismo_tritanopia_desc">Paleta adaptada para dificultad en la percepción del color azul.</string>
 
     <!-- ID de Cliente Web de Firebase para Google Sign-In -->
     <string name="default_web_client_id">846250977181-78snb8np7pq791pqot0jobbb4dk8nj1v.apps.googleusercontent.com</string>

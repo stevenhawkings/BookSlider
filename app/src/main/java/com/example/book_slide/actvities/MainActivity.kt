@@ -1,4 +1,6 @@
 package com.example.book_slide.actvities
+
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,60 +11,73 @@ import com.example.book_slide.databinding.ActivityMenuListaLibrosBinding
 import com.example.book_slide.fragment.HomeFragment
 import com.example.book_slide.fragment.LogInFragment
 import com.example.book_slide.fragment.SettingsFragment
-import com.example.book_slide.fragment.addFragment
+import com.example.book_slide.util.ColorBlindnessManager
+import com.example.book_slide.util.ColorBlindnessMode
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMenuListaLibrosBinding
 
-     override fun onCreate(savedInstanceState: Bundle?) {
-         super.onCreate(savedInstanceState)
-         setContentView(R.layout.activity_menu_lista_libros)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMenuListaLibrosBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbarMenu)
 
-         // hacer que cada vez que se presione un item se diriga a un fragmento
-         binding = ActivityMenuListaLibrosBinding.inflate(layoutInflater)
-         setContentView(binding.root)
-         setSupportActionBar(binding.toolbarMenu)
-        supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, HomeFragment()).commit()
-         binding.bottomNavigation.setOnItemSelectedListener {
-             when (it.itemId){
-                 //R.id.add_circle_menu -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
-                     //addFragment()).commit()
-                 R.id.settings -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
-                     SettingsFragment()).commit()
-                 R.id.home -> supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,
-                     HomeFragment()).commit()
-             }
-             true
-         }
-     }
+        val currentMode = ColorBlindnessManager.init(this)
+        applyColorBlindnessUI(currentMode)
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().add(R.id.fragmentContainer, HomeFragment()).commit()
+        }
+
+        binding.bottomNavigation.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.settings -> supportFragmentManager.beginTransaction().replace(
+                    R.id.fragmentContainer,
+                    SettingsFragment()
+                ).commit()
+
+                R.id.home -> supportFragmentManager.beginTransaction().replace(
+                    R.id.fragmentContainer,
+                    HomeFragment()
+                ).commit()
+            }
+            true
+        }
+    }
+
+    fun applyColorBlindnessUI(mode: ColorBlindnessMode) {
+        val colorStateList = ColorStateList.valueOf(mode.primaryColorHex)
+        binding.toolbarMenu.setTitleTextColor(mode.primaryColorHex)
+        binding.bottomNavigation.itemIconTintList = colorStateList
+        binding.bottomNavigation.itemTextColor = colorStateList
+
+        val indicatorAlphaColor = (mode.primaryColorHex and 0x00FFFFFF) or 0x33000000
+        binding.bottomNavigation.itemActiveIndicatorColor = ColorStateList.valueOf(indicatorAlphaColor)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.toolbar_menu, menu)
         return true
     }
-    // item
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-
             R.id.iniciar_sesion -> {
-                Toast.makeText(this, "Iniciar sesion pronto", Toast.LENGTH_LONG).show()
                 supportFragmentManager.beginTransaction().replace(
                     R.id.fragmentContainer,
                     LogInFragment()
                 ).commit()
                 true
             }
-            R.id.settings-> {
-                Toast.makeText(this, "Configuracion pronto", Toast.LENGTH_LONG).show()
-                // Agregar fragmento de configuracion
+
+            R.id.perfil -> {
+                Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show()
                 true
             }
 
-            R.id.perfil -> {
-                true
-            }
             else -> super.onOptionsItemSelected(item)
         }
     }

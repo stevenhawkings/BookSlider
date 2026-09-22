@@ -55,6 +55,8 @@ fun ListaLibrosScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onAgregar,
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier.semantics { contentDescription = "Agregar nuevo archivo" }
             ) {
                 Icon(Icons.Default.Add, contentDescription = null)
