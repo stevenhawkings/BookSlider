@@ -16,6 +16,7 @@ ksp = "2.3.0"
 hilt = "2.57"
 hiltCompose = "1.2.0"
 googleServices = "4.5.0"
+firebaseCrashlytics = "3.0.8"
 firebaseBom = "34.19.0"
 room = "2.8.5"
 
@@ -45,6 +46,7 @@ androidx-fragment = { group = "androidx.fragment", name = "fragment-ktx", versio
 # Firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
 
 # Credential Manager & Google Identity
@@ -73,3 +75,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }

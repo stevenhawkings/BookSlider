@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.firebase.crashlytics)
 }
 
 android {
@@ -94,6 +95,7 @@ dependencies {
     // Firebase (BoM, Analytics y Auth adaptados)
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+    implementation(libs.firebase.crashlytics)
     implementation(libs.firebase.auth)
 
     // AndroidX Credential Manager & Google Identity
