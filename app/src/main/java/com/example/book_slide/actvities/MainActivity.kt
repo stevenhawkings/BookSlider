@@ -4,12 +4,12 @@ import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.book_slide.R
 import com.example.book_slide.databinding.ActivityMenuListaLibrosBinding
 import com.example.book_slide.fragment.HomeFragment
 import com.example.book_slide.fragment.LogInFragment
+import com.example.book_slide.fragment.ProfileFragment
 import com.example.book_slide.fragment.SettingsFragment
 import com.example.book_slide.util.ColorBlindnessManager
 import com.example.book_slide.util.ColorBlindnessMode
@@ -74,7 +74,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             R.id.perfil -> {
-                Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction().replace(
+                    R.id.fragmentContainer,
+                    ProfileFragment()
+                ).commit()
                 true
             }
 
