@@ -30,6 +30,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -51,6 +52,20 @@ fun ListaLibrosScreen(
 ) {
     val libros by viewModel.libros.collectAsStateWithLifecycle()
 
+    // 1. Variable para guardar lo que escribe el usuario en la barra
+    var query by rememberSaveable { mutableStateOf("") }
+
+    // 2. Filtramos la lista de libros dinámicamente según la búsqueda
+    val librosFiltrados = remember(query, libros) {
+        if (query.isBlank()) {
+            libros
+        } else {
+            libros.filter { libro ->
+                libro.nombre.contains(query, ignoreCase = true)
+            }
+        }
+    }
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -64,23 +79,31 @@ fun ListaLibrosScreen(
         }
     ) { padding ->
         Column(Modifier.fillMaxSize().padding(padding)) {
-            // Barra de búsqueda que antes vivía en fragment_home2.xml (searchCompose).
-            DocumentationSearchBar()
+            // 3. Conectamos la barra con la variable 'query'
+            DocumentationSearchBar(
+                query = query,
+                onQueryChange = { newQuery -> query = newQuery }
+            )
 
-            if (libros.isEmpty()) {
+            // 4. Si no hay coincidencias con la búsqueda o la lista está vacía
+            if (librosFiltrados.isEmpty()) {
                 Box(
                     Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text("No hay archivos agregados todavía")
+                    Text(
+                        if (libros.isEmpty()) "No hay archivos agregados todavía"
+                        else "No se encontraron archivos con \"$query\""
+                    )
                 }
             } else {
+                // 5. IMPORTANTE: Pasamos 'librosFiltrados' al LazyColumn
                 LazyColumn(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    items(libros, key = { it.id }) { libro ->
+                    items(librosFiltrados, key = { it.id }) { libro ->
                         ItemDeslizable(libro = libro, onEliminar = { viewModel.eliminar(libro) })
                     }
                 }

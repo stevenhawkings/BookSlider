@@ -1,23 +1,15 @@
 package com.example.book_slide.search
 
-import android.app.LauncherActivity
-import android.app.appsearch.SearchResult
-import android.icu.text.StringSearch
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.input.TextFieldState
-import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
-import androidx.compose.material3.SearchBarDefaults.InputField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,55 +18,40 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.semantics.isTraversalGroup
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.traversalIndex
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun simpleSearchBar(
-    textFieldState: TextFieldState,
-    onSearch: (String) -> Unit,
+fun SimpleSearchBar(
+    query: String,
+    onQueryChange: (String) -> Unit,
     searchResult: List<String>,
     modifier: Modifier = Modifier
-)   {
-
-    // control de expansion
+) {
     var expanded by rememberSaveable { mutableStateOf(false) }
-    Box(
-        modifier
-            .fillMaxSize()
-            .semantics { isTraversalGroup = true}
-    ){
+
+    Box(modifier = modifier.fillMaxWidth()) {
         SearchBar(
-            modifier = Modifier
-                .align(Alignment.TopCenter)
-                .semantics {traversalIndex = 0f},
+            modifier = Modifier.align(Alignment.TopCenter),
             inputField = {
                 SearchBarDefaults.InputField(
-                    query = textFieldState.text.toString(),
-                    onQueryChange = { textFieldState.edit { replace(0,length, it) }},
-                    onSearch = {
-                        onSearch(textFieldState.text.toString())
-                        expanded = false
-                    },
+                    query = query,
+                    onQueryChange = onQueryChange, // Notifica el cambio de texto inmediatamente
+                    onSearch = { expanded = false },
                     expanded = expanded,
-                    onExpandedChange =  { expanded = it},
+                    onExpandedChange = { expanded = it },
                     placeholder = { Text("Buscar archivos") }
                 )
             },
-
             expanded = expanded,
-            onExpandedChange = { expanded = it},
+            onExpandedChange = { expanded = it },
         ) {
-            // Mostrar resultados de la columna scrollable
             Column(Modifier.verticalScroll(rememberScrollState())) {
                 searchResult.forEach { result ->
                     ListItem(
-                        headlineContent = { Text(result)},
+                        headlineContent = { Text(result) },
                         modifier = Modifier
                             .clickable {
-                                textFieldState.edit { replace(0, length, result) }
+                                onQueryChange(result)
                                 expanded = false
                             }
                             .fillMaxWidth()
@@ -82,6 +59,5 @@ fun simpleSearchBar(
                 }
             }
         }
-
     }
 }

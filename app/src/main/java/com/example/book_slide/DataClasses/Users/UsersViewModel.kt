@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 class UsersViewModel (
     private val repository: UsersRepository
@@ -25,4 +27,14 @@ class UsersViewModel (
             onResult(user != null)
         }
     }
+
+    // Dentro de UsersViewModel class:
+    fun loginWithGoogleToken(idToken: String, onResult: (Boolean) -> Unit) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        FirebaseAuth.getInstance().signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                onResult(task.isSuccessful)
+            }
+    }
 }
+
